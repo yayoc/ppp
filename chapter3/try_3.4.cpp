@@ -4,13 +4,14 @@
 
 using namespace std;
 
-int main() {
-	cout << "Please enter a int value\n";			
+int main()
+{
+	cout << "Please enter a int value\n";
 	int n;
 	cin >> n;
 	cout << "n == " << n
 		 << "\nn + 1 == " << n + 1
-		 << "\nthree times n == " << 3*n
+		 << "\nthree times n == " << 3 * n
 		 << "\ntwice n == " << n + n
 		 << "\nn squared == " << n * n
 		 << "\nhalf of n == " << n / 2
@@ -18,4 +19,3 @@ int main() {
 		 << "\nreminder of n / 3 == " << n % 3
 		 << "\n";
 }
-		
