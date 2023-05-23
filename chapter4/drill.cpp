@@ -54,8 +54,9 @@ bool has_digits_only(string str) {
 }
 
 int main() {
-  double smallest = 1000000;
-  double largest = 0;
+  string smallest = "1000000ft";
+  string largest = "0";
+  double sum = 0;
 
   vector<string> nums;
   string tmp = "";
@@ -76,14 +77,18 @@ int main() {
 
   for (string num : nums) {
     double cm = str_to_cm(num);
-    if (cm < smallest) {
-      cout << num << " the smallest so far\n";
-      smallest = cm;
+    sum += cm;
+    if (cm < str_to_cm(smallest)) {
+      smallest = num;
     }
 
-    if (cm > largest) {
-      cout << num << " the largest so far\n";
-      largest = cm;
+    if (cm > str_to_cm(largest)) {
+      largest = num;
     }
   }
+
+  cout << "the smallest: " << smallest << "\n";
+  cout << "the largest: " << largest << "\n";
+  cout << "sum: " << sum / 100 << "m\n";
+
 }
