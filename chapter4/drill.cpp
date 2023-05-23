@@ -1,8 +1,8 @@
 #include "std_lib_facilities.h"
 
 int main() {
-  vector<int> nums;
-  int val = 0;
+  vector<double> nums;
+  double val = 0;
   while(cin >> val) {
     if (val == 124) { // | = 124
       break;
