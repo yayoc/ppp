@@ -15,6 +15,13 @@ double to_cm(double n, string unit) {
   return n;
 }
 
+bool is_unit(string str) {
+  if (str == "cm" | str == "m" | str == "in" | str == "ft") {
+    return true;
+  }
+  return false;
+}
+
 double str_to_cm(string str) {
   double numericPart = 0;
   string unit = "";
@@ -23,10 +30,12 @@ double str_to_cm(string str) {
   if (index != std::string::npos) {
     numericPart = stod(str.substr(0, index));
     unit = str.substr(index);
+    if (!is_unit(unit)) {
+      invalid_argument("unit must be cm, m, in, or ft");
+    }
   } else {
-    // If there are no non-digit characters, consider the entire string as the
-    // numeric part
-    numericPart = stod(str);
+    // If there are no non-digit characters    
+    invalid_argument("specify unit");
   }
 
   return to_cm(numericPart, unit);
@@ -42,13 +51,6 @@ bool has_digits_only(string str) {
     }
   }
   return true;
-}
-
-bool is_unit(string str) {
-  if (str == "cm" | str == "m" | str == "in" | str == "ft") {
-    return true;
-  }
-  return false;
 }
 
 int main() {
