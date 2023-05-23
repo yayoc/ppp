@@ -19,5 +19,7 @@ int main() {
   } else if (nums[1] > nums[0]){
     cout << "the smaller value is: " << nums[0] << "\n";
     cout << "the bigger value is: " << nums[1] << "\n";
+  } else {
+    cout << "the numbers are equal\n";
   }
 }
