@@ -91,4 +91,7 @@ int main() {
   cout << "the largest: " << largest << "\n";
   cout << "sum: " << sum / 100 << "m\n";
 
+  for (string num : nums) {
+    cout << num << "\n";
+  }
 }
