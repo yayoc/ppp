@@ -13,13 +13,22 @@ int main() {
     nums.push_back(val);
   }
 
-  if (nums[0] > nums[1]) {
+  double diff = nums[0] - nums[1];
+
+  if (diff > 0) {
     cout << "the smaller value is: " << nums[1] << "\n";
     cout << "the bigger value is: " << nums[0] << "\n";
-  } else if (nums[1] > nums[0]){
+  } else if (diff < 0){
     cout << "the smaller value is: " << nums[0] << "\n";
     cout << "the bigger value is: " << nums[1] << "\n";
-  } else {
+  } else if (diff == 0) {
     cout << "the numbers are equal\n";
+  }
+
+  if (diff < 0) {
+    diff = -diff;
+  }
+  if (diff != 0 && diff < 1.0/100) {
+    cout << "the numbers are almost equal";
   }
 }
