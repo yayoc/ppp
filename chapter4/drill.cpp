@@ -53,6 +53,13 @@ bool has_digits_only(string str) {
   return true;
 }
 
+bool customSort(string str1, string str2) {
+  double cm1 = str_to_cm(str1);
+  double cm2 = str_to_cm(str2);
+
+  return cm1 < cm2;
+}
+
 int main() {
   string smallest = "1000000ft";
   string largest = "0";
@@ -90,6 +97,8 @@ int main() {
   cout << "the smallest: " << smallest << "\n";
   cout << "the largest: " << largest << "\n";
   cout << "sum: " << sum / 100 << "m\n";
+
+  sort(nums.begin(), nums.end(), customSort);
 
   for (string num : nums) {
     cout << num << "\n";
