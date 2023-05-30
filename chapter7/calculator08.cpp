@@ -52,6 +52,8 @@ Token Token_stream::get()
 	case '=':
 	case ',':
 		return Token(ch);
+	case '#':
+		return Token(let);
 	case '.':
 	case '0':
 	case '1':
@@ -74,7 +76,6 @@ Token Token_stream::get()
 			s += ch;
 			while (cin.get(ch) && (isalpha(ch) || isdigit(ch))) s += ch;
 			cin.unget();
-			if (s == "let") return Token(let);
 			if (s == "quit") return Token(name);
 			if (s == "sqrt") return Token(t_sqrt);
 			if (s == "pow") return Token(t_pow);
