@@ -33,6 +33,7 @@ const char print = ';';
 const char number = '8';
 const char name = 'a';
 const char t_sqrt = 'S';
+const char t_pow = 'P';
 
 Token Token_stream::get()
 {
@@ -49,6 +50,7 @@ Token Token_stream::get()
 	case '%':
 	case ';':
 	case '=':
+	case ',':
 		return Token(ch);
 	case '.':
 	case '0':
@@ -75,6 +77,7 @@ Token Token_stream::get()
 			if (s == "let") return Token(let);
 			if (s == "quit") return Token(name);
 			if (s == "sqrt") return Token(t_sqrt);
+			if (s == "pow") return Token(t_pow);
 			return Token(name, s);
 		}
 		error("Bad token");
@@ -172,6 +175,13 @@ double term()
 		left /= d;
 		break;
 		}
+		case '%':
+		{
+			double d = primary();
+			if (d == 0) error("divide by zero");
+			left = fmod(left, d);
+			break;
+		}
 		default:
 			ts.unget(t);
 			return left;
@@ -235,6 +245,21 @@ double statement()
 		double d = primary();
 		if (d < 0) error("sqrt expected a positive number");
 		return sqrt(d);
+	}
+	case t_pow: 
+	{
+		t = ts.get();
+		if (t.kind != '(') error("'(' expected");
+		double left = primary();
+
+		t = ts.get();
+		if (t.kind != ',') error("',' expected");
+		int i = narrow_cast<int>(primary());
+
+		t = ts.get();
+		if (t.kind != ')') error("')' expected");
+
+		return pow(left, i);
 	}
 	default:
 		ts.unget(t);
