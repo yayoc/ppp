@@ -233,6 +233,7 @@ double statement()
 	case t_sqrt: 
 	{
 		double d = primary();
+		if (d < 0) error("sqrt expected a positive number");
 		return sqrt(d);
 	}
 	default:
