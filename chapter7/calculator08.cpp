@@ -76,7 +76,7 @@ Token Token_stream::get()
 			s += ch;
 			while (cin.get(ch) && (isalpha(ch) || isdigit(ch))) s += ch;
 			cin.unget();
-			if (s == "quit") return Token(name);
+			if (s == "exit") return Token(quit);
 			if (s == "sqrt") return Token(t_sqrt);
 			if (s == "pow") return Token(t_pow);
 			return Token(name, s);
