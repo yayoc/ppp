@@ -32,6 +32,7 @@ const char quit = 'Q';
 const char print = ';';
 const char number = '8';
 const char name = 'a';
+const char t_sqrt = 'S';
 
 Token Token_stream::get()
 {
@@ -73,6 +74,7 @@ Token Token_stream::get()
 			cin.unget();
 			if (s == "let") return Token(let);
 			if (s == "quit") return Token(name);
+			if (s == "sqrt") return Token(t_sqrt);
 			return Token(name, s);
 		}
 		error("Bad token");
@@ -228,6 +230,11 @@ double statement()
 	switch (t.kind) {
 	case let:
 		return declaration();
+	case t_sqrt: 
+	{
+		double d = primary();
+		return sqrt(d);
+	}
 	default:
 		ts.unget(t);
 		return expression();
